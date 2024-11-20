@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
   private Animator _anim;
   private InputControl _inputControl;
   private Transform _buildingPos;
+  private WeaponController _weaponController;
   [SerializeField] private Vector2 _inputDirection;
 
   [Header("Move")] public float moveSpeed;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
     _anim = GetComponentInChildren<Animator>();
     _buildingPos = transform.Find("BuildingPos");
+    _weaponController = GetComponentInChildren<WeaponController>();
 
     _inputControl = new InputControl();
     _inputControl.Enable();
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
   private void OnAttackEvent(InputAction.CallbackContext obj)
   {
     _anim.SetTrigger("Slash");
+    Debug.Log(_weaponController.GetCurrentWeaponType());
   }
 
   private void OnBuildingEventRaised(GameObject building)

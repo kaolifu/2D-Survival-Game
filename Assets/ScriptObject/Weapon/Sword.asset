@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5786d9cfc070405da97b9f627424d18, type: 3}
-  m_Name: BuildingList
+  m_Script: {fileID: 11500000, guid: 6e81a409299de42f69f88fe5c8e52d5e, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  BuildingList:
-  - {fileID: 1093047205514157439, guid: 416c547216d6a497aaa32be605d78891, type: 3}
-  - {fileID: 0}
+  id: 
+  itemName: 
+  value: 0
+  icon: {fileID: 0}
+  usageType: 0
+  weaponType: 0
