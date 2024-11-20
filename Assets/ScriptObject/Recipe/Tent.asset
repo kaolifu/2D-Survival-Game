@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a345f4088fcb4cf1a726b85ecad52d24, type: 3}
+  m_Name: Tent
+  m_EditorClassIdentifier: 
+  id: 1
+  recipeName: Tent
+  icon: {fileID: 21300000, guid: 9b0f0632768a53f4198ad8aa7cae6162, type: 3}
+  items:
+  - item: {fileID: 11400000, guid: 89387402dac754f1d96ea6ef8ee83bd7, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 73d191e4c989c4a24b6d4683faaf0cb2, type: 2}
+    amount: 10
+  achievement:
+    item: {fileID: 11400000, guid: 178c26325d4d54437825fc7cf5d087ab, type: 2}
+    amount: 1
