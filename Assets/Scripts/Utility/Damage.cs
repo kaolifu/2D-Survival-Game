@@ -17,11 +17,11 @@ public class Damage : MonoBehaviour
   }
 
 
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    if (other.CompareTag("InteractItem"))
-    {
-      other.gameObject.GetComponent<InteractItemController>().OnCollected();
-    }
-  }
+  // private void OnTriggerEnter2D(Collider2D other)
+  // {
+  //   if (other.CompareTag("InteractItem"))
+  //   {
+  //     other.gameObject.GetComponent<InteractItemController>().OnCollected();
+  //   }
+  // }
 }

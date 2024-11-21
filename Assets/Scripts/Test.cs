@@ -8,19 +8,19 @@ public class Test : MonoBehaviour
   public GameObject sword;
   public WeaponController weaponController;
 
-  public void ChangeWeapon()
-  {
-    if (weaponController.transform.childCount == 0)
-    {
-      weaponController.EquipWeapon(axe);
-    }
-    else if (weaponController.GetCurrentWeaponType() == WeaponType.Axe)
-    {
-      weaponController.EquipWeapon(sword);
-    }
-    else if (weaponController.GetCurrentWeaponType() == WeaponType.Sword)
-    {
-      weaponController.RemoveWeapon();
-    }
-  }
+  // public void ChangeWeapon()
+  // {
+  //   if (weaponController.transform.childCount == 0)
+  //   {
+  //     weaponController.EquipWeapon(axe);
+  //   }
+  //   else if (weaponController.GetCurrentWeaponType() == WeaponType.Axe)
+  //   {
+  //     weaponController.EquipWeapon(sword);
+  //   }
+  //   else if (weaponController.GetCurrentWeaponType() == WeaponType.Sword)
+  //   {
+  //     weaponController.RemoveWeapon();
+  //   }
+  // }
 }

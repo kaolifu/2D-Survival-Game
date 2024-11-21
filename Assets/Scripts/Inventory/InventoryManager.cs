@@ -10,10 +10,7 @@ public class InventoryManager : MonoBehaviour
 
   public List<ItemEntry> items = new List<ItemEntry>();
 
-  public BuildingListSO buildingListSO;
-
-  public Transform itemContent;
-  public GameObject itemSlotPrefab;
+  [Header("广播")] public VoidEventSO OnInventoryChanged;
 
   private void Awake()
   {
@@ -27,58 +24,54 @@ public class InventoryManager : MonoBehaviour
     }
   }
 
-  public void AddItem(ItemSO item, int amount)
+  public void AddItem(ItemData itemData, int amount)
   {
-    var existingItem = items.Find(i => i.item == item);
-    if (existingItem != null)
+    var existingItemData = items.Find(i => i.itemData.itemName == itemData.itemName);
+    if (existingItemData != null)
     {
-      existingItem.amount += amount;
+      existingItemData.amount += amount;
     }
     else
     {
-      var newItem = new ItemEntry(item);
-      newItem.amount = amount;
-      items.Add(newItem);
+      var newItemData = new ItemEntry();
+      newItemData.itemData = itemData;
+      newItemData.amount = amount;
+      items.Add(newItemData);
     }
+
+    OnInventoryChanged.RaiseEvent();
   }
 
-  public void RemoveItem(ItemSO item, int amount)
+  public void RemoveItem(ItemData itemData, int amount)
   {
-    var result = items.Find(i => i.item == item);
+    var result = items.Find(i => i.itemData == itemData);
     result.amount = Mathf.Max(result.amount - amount, 0);
 
     if (result.amount <= 0)
     {
       items.Remove(result);
     }
+
+    OnInventoryChanged.RaiseEvent();
   }
 
   public void RemoveItemByName(string itemName, int amount)
   {
-    var result = items.Find(i => i.item.itemName == itemName);
+    var result = items.Find(i => i.itemData.itemName == itemName);
     result.amount = Mathf.Max(result.amount - amount, 0);
-  }
 
-  public void ListItems()
-  {
-    foreach (Transform child in itemContent)
+    if (result.amount <= 0)
     {
-      Destroy(child.gameObject);
+      items.Remove(result);
     }
 
-    foreach (var itemEntry in items)
-    {
-      var itemSlot = Instantiate(itemSlotPrefab, itemContent);
-
-      itemSlot.GetComponent<ItemSlotController>().itemEntry = itemEntry;
-
-      var itemSlotName = itemSlot.transform.Find("Name").GetComponent<TextMeshProUGUI>();
-      var itemSlotIcon = itemSlot.transform.Find("Icon").GetComponent<Image>();
-      var itemSlotAmount = itemSlot.transform.Find("Amount").GetComponentInChildren<TextMeshProUGUI>();
-
-      itemSlotName.text = itemEntry.item.itemName;
-      itemSlotIcon.sprite = itemEntry.item.icon;
-      itemSlotAmount.text = itemEntry.amount.ToString();
-    }
+    OnInventoryChanged.RaiseEvent();
   }
+}
+
+[System.Serializable]
+public class ItemEntry
+{
+  public ItemData itemData;
+  public int amount;
 }

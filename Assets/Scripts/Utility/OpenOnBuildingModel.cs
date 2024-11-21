@@ -2,23 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class OpenOnBuildingModel : MonoBehaviour
 {
-  [Header("监听")] public BuildingEventSO buildingEvent;
+  [FormerlySerializedAs("buildingEvent")] [Header("监听")] public ItemEventSO itemEvent;
   public VoidEventSO buildingOverEvent;
   public GameObject[] openObjs;
 
   private void OnEnable()
   {
-    buildingEvent.OnEventRaised += OpenObjs;
+    itemEvent.OnEventRaised += OpenObjs;
     buildingOverEvent.OnEventRaised += CloseObjs;
   }
 
 
   private void OnDisable()
   {
-    buildingEvent.OnEventRaised -= OpenObjs;
+    itemEvent.OnEventRaised -= OpenObjs;
     buildingOverEvent.OnEventRaised -= CloseObjs;
   }
 

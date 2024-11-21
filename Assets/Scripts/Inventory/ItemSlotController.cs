@@ -1,31 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ItemSlotController : MonoBehaviour
 {
   public ItemEntry itemEntry;
 
-  [Header("广播")] public BuildingEventSO buildingEvent;
+  [Header("广播")] public ItemEventSO buildEvent;
+  public ItemEventSO equipItemEvent;
 
   public void OnItemSlotClicked()
   {
-    switch (itemEntry.item.usageType)
+    switch (itemEntry.itemData.usageType)
     {
-      case ItemUsageType.None:
+      case UsageType.None:
         Debug.Log("不可使用");
         break;
-      case ItemUsageType.CanBuild:
+      case UsageType.CanBuild:
         BuildItem();
+        break;
+      case UsageType.CanEquip:
+        EquipItem();
         break;
     }
   }
 
+  private void EquipItem()
+  {
+    var currentItemObj = itemEntry.itemData.prefab;
+
+    equipItemEvent.RaiseEvent(currentItemObj);
+
+    InventoryManager.Instance.RemoveItem(itemEntry.itemData, 1);
+  }
+
   private void BuildItem()
   {
-    var currentBuildItem =
-      InventoryManager.Instance.buildingListSO.BuildingList.Find(item => item.name == itemEntry.item.name);
-
-    buildingEvent.RaiseEvent(currentBuildItem);
+    var currentBuildItem = itemEntry.itemData.prefab;
+    
+    buildEvent.RaiseEvent(currentBuildItem);
   }
 }

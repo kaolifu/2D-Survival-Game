@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,15 +12,17 @@ public class PlayerController : MonoBehaviour
   private InputControl _inputControl;
   private Transform _buildingPos;
   private WeaponController _weaponController;
+
   [SerializeField] private Vector2 _inputDirection;
 
   [Header("Move")] public float moveSpeed;
   [Header("Stats")] private bool isMoving;
   public bool canMove = true;
-  [SerializeField] private bool _isBuildingModel;
+  private bool _isBuildingModel;
   private GameObject _currentBuilding;
 
-  [Header("监听")] public BuildingEventSO buildingEvent;
+  [Header("监听")] public ItemEventSO itemEvent;
+  public ItemEventSO EquipItemEvent;
 
   [Header("广播")] public VoidEventSO buildingOverEvent;
 
@@ -40,7 +43,8 @@ public class PlayerController : MonoBehaviour
     _inputControl.Gameplay.Confirm.started += OnConfirmEvent;
     _inputControl.Gameplay.Cancle.started += OnCancelEvent;
 
-    buildingEvent.OnEventRaised += OnBuildingEventRaised;
+    itemEvent.OnEventRaised += OnBuildingEventRaised;
+    EquipItemEvent.OnEventRaised += OnEquipItemEventRaised;
   }
 
 
@@ -50,7 +54,8 @@ public class PlayerController : MonoBehaviour
     _inputControl.Gameplay.Confirm.started -= OnConfirmEvent;
     _inputControl.Gameplay.Cancle.started -= OnCancelEvent;
 
-    buildingEvent.OnEventRaised -= OnBuildingEventRaised;
+    itemEvent.OnEventRaised -= OnBuildingEventRaised;
+    EquipItemEvent.OnEventRaised -= OnEquipItemEventRaised;
   }
 
 
@@ -96,35 +101,56 @@ public class PlayerController : MonoBehaviour
   private void OnAttackEvent(InputAction.CallbackContext obj)
   {
     _anim.SetTrigger("Slash");
-    Debug.Log(_weaponController.GetCurrentWeaponType());
   }
 
+  /// <summary>
+  /// 将待建造物体放到玩家身上
+  /// </summary>
+  /// <param name="building"></param>
   private void OnBuildingEventRaised(GameObject building)
   {
     _isBuildingModel = true;
 
     _currentBuilding = Instantiate(building, _buildingPos);
-    _currentBuilding.GetComponent<Collider2D>().enabled = false;
-    _currentBuilding.transform.Find("Renderer").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.2f);
+    _currentBuilding.GetComponent<BoxCollider2D>().enabled = false;
+    _currentBuilding.GetComponent<CircleCollider2D>().enabled = false;
+    _currentBuilding.GetComponent<ItemController>().itemData.collectable = false;
+
+    ChangeBuildingAlpha(0.2f);
   }
 
+  /// <summary>
+  /// 玩家按下确定键后在玩家指定的位置安放建筑物
+  /// </summary>
+  /// <param name="obj"></param>
   private void OnConfirmEvent(InputAction.CallbackContext obj)
   {
     if (_isBuildingModel)
     {
       if (_currentBuilding != null)
       {
-        _currentBuilding.GetComponent<Collider2D>().enabled = true;
-        _currentBuilding.transform.Find("Renderer").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-
+        _currentBuilding.GetComponent<BoxCollider2D>().enabled = true;
+        ChangeBuildingAlpha(1.0f);
         GameObject environment = GameObject.Find("Environment");
         _currentBuilding.transform.parent = environment.transform;
 
-        InventoryManager.Instance.RemoveItem(_currentBuilding.GetComponent<SceneryItemNew>().itemSO, 1);
+        InventoryManager.Instance.RemoveItemByName(_currentBuilding.GetComponent<ItemController>().itemData.itemName,
+          1);
+
+        _currentBuilding.GetComponent<ItemController>().SetIsScenery(true);
 
         buildingOverEvent.RaiseEvent();
         _isBuildingModel = false;
       }
+    }
+  }
+
+  private void ChangeBuildingAlpha(float alpha)
+  {
+    var srs = _buildingPos.GetComponentsInChildren<SpriteRenderer>();
+    foreach (var sr in srs)
+    {
+      sr.color = new Color(1, 1, 1, alpha);
     }
   }
 
@@ -138,5 +164,10 @@ public class PlayerController : MonoBehaviour
         _isBuildingModel = false;
       }
     }
+  }
+
+  private void OnEquipItemEventRaised(GameObject item)
+  {
+    _weaponController.EquipWeapon(item);
   }
 }

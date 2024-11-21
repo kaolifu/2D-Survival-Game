@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bonfire
+  m_Controller: {fileID: 9100000, guid: bc238c860d0a64717a4a08e2575db6a1, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 64d7cdadd0476474e8f1564b54ae1198, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 64d7cdadd0476474e8f1564b54ae1198, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 647050cca96194085b634761265c3d6a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 647050cca96194085b634761265c3d6a, type: 2}

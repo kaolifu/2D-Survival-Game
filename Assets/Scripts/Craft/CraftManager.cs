@@ -67,7 +67,7 @@ public class CraftManager : MonoBehaviour
     foreach (var itemEntry in currentRecipe.items)
     {
       // 当前Recipe中的每个元素都和背包中的同个元素比较数量，如果背包中的元素数量大于需求数量，则holdIngredientCount+1
-      var result = InventoryManager.Instance.items.Find(i => i.item == itemEntry.item);
+      var result = InventoryManager.Instance.items.Find(i => i.itemData == itemEntry.itemData);
       if (result != null && result.amount >= itemEntry.amount)
       {
         holdIngredientCount++;
@@ -79,10 +79,10 @@ public class CraftManager : MonoBehaviour
     {
       foreach (var itemEntry in currentRecipe.items)
       {
-        InventoryManager.Instance.RemoveItem(itemEntry.item, itemEntry.amount);
+        InventoryManager.Instance.RemoveItem(itemEntry.itemData, itemEntry.amount);
       }
 
-      InventoryManager.Instance.AddItem(currentRecipe.achievement.item, currentRecipe.achievement.amount);
+      InventoryManager.Instance.AddItem(currentRecipe.achievement.itemData, currentRecipe.achievement.amount);
 
       onCraftSuccess?.Invoke();
     }

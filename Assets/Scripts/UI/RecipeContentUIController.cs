@@ -54,16 +54,16 @@ public class RecipeContentUIController : MonoBehaviour
 
   private void OnRecipeClickedEvent(Recipe recipe)
   {
-    ingredient1Name.text = recipe.items[0].item.itemName;
-    ingredient1Icon.sprite = recipe.items[0].item.icon;
+    ingredient1Name.text = recipe.items[0].itemData.itemName;
+    ingredient1Icon.sprite = recipe.items[0].itemData.icon;
     ingredient1Amount.text = recipe.items[0].amount.ToString();
 
-    ingredient2Name.text = recipe.items[1].item.itemName;
-    ingredient2Icon.sprite = recipe.items[1].item.icon;
+    ingredient2Name.text = recipe.items[1].itemData.itemName;
+    ingredient2Icon.sprite = recipe.items[1].itemData.icon;
     ingredient2Amount.text = recipe.items[1].amount.ToString();
 
-    achievementName.text = recipe.achievement.item.itemName;
-    achievementIcon.sprite = recipe.achievement.item.icon;
+    achievementName.text = recipe.achievement.itemData.itemName;
+    achievementIcon.sprite = recipe.achievement.itemData.icon;
     achievementAmount.text = recipe.achievement.amount.ToString();
   }
 }
