@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   id: 52
-  itemName: Pickaxe
+  itemName: "\u9550\u5B50"
+  itemDescription: "\u53EF\u4EE5\u7528\u6765\u91C7\u96C6\u77FF\u77F3\u3002"
   collectable: 1
   prefab: {fileID: 3286859293451840995, guid: 357a8e3df7ee647e5a087cc7cbc89d92, type: 3}
   icon: {fileID: 21300000, guid: 221c8935b531541ecbb0a73cccd109c0, type: 3}
@@ -24,3 +25,7 @@ MonoBehaviour:
   gatherPoint: 0
   contentItem: {fileID: 0}
   contentItemCount: 0
+  healthValue: 0
+  sleepValue: 0
+  foodValue: 0
+  waterValue: 0

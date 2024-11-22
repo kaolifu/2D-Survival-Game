@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   id: 51
-  itemName: Axe
+  itemName: "\u65A7\u5B50"
+  itemDescription: "\u65A7\u5B50\uFF0C\u53EF\u4EE5\u7528\u6765\u780D\u4F10\u6811\u6728\u3002"
   collectable: 1
   prefab: {fileID: 6887476377385498182, guid: a8fbb8dae6b09436db7cd65a363dd181, type: 3}
   icon: {fileID: -8758909403539238095, guid: f8cc3908e94904d6d80536b201d8e057, type: 3}
@@ -24,3 +25,7 @@ MonoBehaviour:
   gatherPoint: 0
   contentItem: {fileID: 0}
   contentItemCount: 0
+  healthValue: 0
+  sleepValue: 0
+  foodValue: 0
+  waterValue: 0

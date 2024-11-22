@@ -291,8 +291,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7291316762850287860}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2112268529
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &8513025060181432035
@@ -331,7 +331,6 @@ MonoBehaviour:
   _inputDirection: {x: 0, y: 0}
   moveSpeed: 5
   canMove: 1
-  _isBuildingModel: 0
   itemEvent: {fileID: 11400000, guid: 5d50d882f57e04532922b1851e90ff27, type: 2}
   EquipItemEvent: {fileID: 11400000, guid: 1f64ecd3287b84696aacb87f977d40b8, type: 2}
   buildingOverEvent: {fileID: 11400000, guid: 2ff73ed11e9844bb89289a8f0f27c597, type: 2}

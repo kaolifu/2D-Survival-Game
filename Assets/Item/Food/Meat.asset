@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb771eba3584adfb70f5e4a88b06bba, type: 3}
+  m_Name: Meat
+  m_EditorClassIdentifier: 
+  id: 5
+  itemName: "\u751F\u8089"
+  itemDescription: "\u4E00\u5757\u751F\u8089\uFF0C\u53EF\u4EE5\u6062\u590D\u5C11\u91CF\u4F53\u529B\u4E0E\u9971\u8179\uFF0C\u4F46\u53EF\u80FD\u4F1A\u95F9\u809A\u5B50\u3002"
+  collectable: 1
+  prefab: {fileID: 2608547932549424837, guid: d07ada21a008b42eea501b917f072f39, type: 3}
+  icon: {fileID: 21300000, guid: a3c874f43c4104dec88f175afe511df3, type: 3}
+  usageType: 3
+  weaponType: 0
+  damage: 0
+  interactType: 0
+  gatherPoint: 0
+  contentItem: {fileID: 0}
+  contentItemCount: 0
+  healthValue: 100
+  sleepValue: 0
+  foodValue: 100
+  waterValue: 0

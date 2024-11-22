@@ -20,4 +20,12 @@ public class Player : Character
     foodPoint = Mathf.Clamp(sleepPoint - foodDecreaseSpeed, 0, 100);
     waterPoint = Mathf.Clamp(sleepPoint - waterDecreaseSpeed, 0, 100);
   }
+
+  public void IncreasePlayerStats(int health, int sleep, int food, int water)
+  {
+    currentHealth = Mathf.Clamp(currentHealth + health, 0, maxHealth);
+    sleepPoint = Mathf.Clamp(sleepPoint + sleep, 0, 100);
+    foodPoint = Mathf.Clamp(foodPoint + food, 0, 100);
+    waterPoint = Mathf.Clamp(waterPoint + water, 0, 100);
+  }
 }

@@ -11,6 +11,7 @@ public class ItemDataEditor : Editor
     EditorGUILayout.LabelField("基本信息", EditorStyles.boldLabel);
     item.id = EditorGUILayout.TextField("ID", item.id);
     item.itemName = EditorGUILayout.TextField("Item Name", item.itemName);
+    item.itemDescription = EditorGUILayout.TextArea(item.itemDescription, GUILayout.Height(100));
     item.prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", item.prefab, typeof(GameObject), false);
     item.collectable = EditorGUILayout.Toggle("Collectable", item.collectable);
 
@@ -22,12 +23,21 @@ public class ItemDataEditor : Editor
 
       item.usageType = (UsageType)EditorGUILayout.EnumPopup("Usage Type", item.usageType);
 
-      EditorGUILayout.Space();
-      EditorGUILayout.LabelField("武器", EditorStyles.boldLabel);
       if (item.usageType == UsageType.CanEquip)
       {
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("武器", EditorStyles.boldLabel);
         item.weaponType = (WeaponType)EditorGUILayout.EnumPopup("Weapon Type", item.weaponType);
         item.damage = EditorGUILayout.IntField("Damage", item.damage);
+      }
+      else if (item.usageType == UsageType.CanUse)
+      {
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("可使用物品", EditorStyles.boldLabel);
+        item.healthValue = EditorGUILayout.IntField("Health", item.healthValue);
+        item.sleepValue = EditorGUILayout.IntField("Sleep", item.sleepValue);
+        item.foodValue = EditorGUILayout.IntField("Food", item.foodValue);
+        item.waterValue = EditorGUILayout.IntField("Water", item.waterValue);
       }
     }
     else

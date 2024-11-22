@@ -126,10 +126,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939687502741590529}
+  - component: {fileID: 3665241635998608664}
   - component: {fileID: 3896755284444289035}
   - component: {fileID: 5402456535096795036}
   - component: {fileID: 8547466565595320470}
-  - component: {fileID: 3665241635998608664}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -153,6 +153,18 @@ Transform:
   - {fileID: 406917137946774073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &3665241635998608664
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887476377385498182}
+  m_Enabled: 1
+  m_SortingLayerID: -2112268529
+  m_SortingLayer: 2
+  m_SortingOrder: 7
+  m_SortAtRoot: 0
 --- !u!95 &3896755284444289035
 Animator:
   serializedVersion: 5
@@ -224,18 +236,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
---- !u!210 &3665241635998608664
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887476377385498182}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 7
-  m_SortAtRoot: 0
 --- !u!1 &6933120451562928209
 GameObject:
   m_ObjectHideFlags: 0

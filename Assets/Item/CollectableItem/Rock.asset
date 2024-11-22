@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   id: 4
-  itemName: Rock
+  itemName: "\u77F3\u5757"
+  itemDescription: "\u4E00\u5757\u5C0F\u77F3\u5757\uFF0C\u53EF\u4EE5\u62FF\u6765\u5236\u4F5C\u4E00\u4E9B\u4E1C\u897F\u3002"
   collectable: 1
   prefab: {fileID: 7212496062024260080, guid: 95589fe81ad974ed8bc7d2abe443a2ee, type: 3}
   icon: {fileID: 21300000, guid: ef6b528acb23c5b4a867f7360c8432a0, type: 3}
@@ -24,3 +25,7 @@ MonoBehaviour:
   gatherPoint: 0
   contentItem: {fileID: 0}
   contentItemCount: 0
+  healthValue: 0
+  sleepValue: 0
+  foodValue: 0
+  waterValue: 0

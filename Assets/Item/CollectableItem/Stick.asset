@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Stick
   m_EditorClassIdentifier: 
   id: 3
-  itemName: Stick
+  itemName: "\u6811\u679D"
+  itemDescription: "\u4E00\u6839\u6811\u679D\uFF0C\u53EF\u4EE5\u62FF\u6765\u5236\u4F5C\u4E00\u4E9B\u4E1C\u897F\u3002"
   collectable: 1
   prefab: {fileID: 5354579654300851035, guid: 4dc7692f584534963971928f4a27f8a0, type: 3}
   icon: {fileID: 21300000, guid: c620babe8efddd344bb3e6151b86be70, type: 3}
@@ -24,3 +25,7 @@ MonoBehaviour:
   gatherPoint: 0
   contentItem: {fileID: 0}
   contentItemCount: 0
+  healthValue: 0
+  sleepValue: 0
+  foodValue: 0
+  waterValue: 0

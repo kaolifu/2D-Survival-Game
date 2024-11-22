@@ -427,8 +427,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Item Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1de4f322874d644ccb5ba68ba4c4f896, type: 2}
+  m_sharedMaterial: {fileID: -3009463738796872602, guid: 1de4f322874d644ccb5ba68ba4c4f896, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -709,8 +709,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemEntry:
-    item: {fileID: 0}
+    itemData: {fileID: 0}
     amount: 0
+  itemDataEvent: {fileID: 11400000, guid: f485a1f5999764de699d30c2d97d905d, type: 2}
   buildEvent: {fileID: 11400000, guid: 5d50d882f57e04532922b1851e90ff27, type: 2}
   equipItemEvent: {fileID: 11400000, guid: 1f64ecd3287b84696aacb87f977d40b8, type: 2}
 --- !u!114 &-5378915917248008404
@@ -759,7 +760,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -6348764981462835452}
         m_TargetAssemblyTypeName: ItemSlotController, Assembly-CSharp
-        m_MethodName: OnItemSlotClicked
+        m_MethodName: OnSlotClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
