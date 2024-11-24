@@ -5,19 +5,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterController
 {
-  private Rigidbody2D _rb;
-  private Animator _anim;
   private InputControl _inputControl;
   private Transform _buildingPos;
   private WeaponController _weaponController;
 
-  [SerializeField] private Vector2 _inputDirection;
+  private Vector2 _inputDirection;
 
-  [Header("Move")] public float moveSpeed;
   [Header("Stats")] private bool isMoving;
-  public bool canMove = true;
   private bool _isBuildingModel;
   private GameObject _currentBuilding;
 
@@ -26,10 +22,9 @@ public class PlayerController : MonoBehaviour
 
   [Header("广播")] public VoidEventSO buildingOverEvent;
 
-  private void Awake()
+  protected override void Awake()
   {
-    _rb = GetComponent<Rigidbody2D>();
-    _anim = GetComponentInChildren<Animator>();
+    base.Awake();
     _buildingPos = transform.Find("BuildingPos");
     _weaponController = GetComponentInChildren<WeaponController>();
 
@@ -94,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     if ((_inputDirection.x < 0 && transform.localScale.x > 0) || (_inputDirection.x > 0 && transform.localScale.x < 0))
     {
-      transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+      Flip();
     }
   }
 

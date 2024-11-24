@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player : Character
 {
+  [Header("Survival Stats")]
   public int sleepPoint;
   public int sleepDecreaseSpeed;
   public int foodPoint;
