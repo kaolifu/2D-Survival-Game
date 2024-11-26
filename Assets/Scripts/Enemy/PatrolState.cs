@@ -8,7 +8,9 @@ public class PatrolState : BaseState
   public override void OnEnter(EnemyController controller, Enemy enemy)
   {
     base.OnEnter(controller, enemy);
-    
+
+    enemyController.moveSpeed = enemyController.patrolSpeed;
+
     if (_originalPosition == Vector2.zero)
     {
       _originalPosition = controller.transform.position;
@@ -25,6 +27,11 @@ public class PatrolState : BaseState
     if (Vector2.Distance(enemy.transform.position, _targetDestination) <= 0.2)
     {
       enemyController.ChangeState(enemyController.idleState);
+    }
+
+    if (enemyController.FindPlayer() || enemy.isHit)
+    {
+      enemyController.ChangeState(enemyController.chaseState);
     }
   }
 

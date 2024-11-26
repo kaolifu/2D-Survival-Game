@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyController : CharacterController
 {
   private Enemy _enemy;
+  [HideInInspector] public Player player;
+  [HideInInspector] public GameObject damageZone;
 
   private BaseState _currentState;
   public IdleState idleState;
@@ -13,10 +16,17 @@ public class EnemyController : CharacterController
   public ChaseState chaseState;
 
   private int faceDir = 1;
-  private bool isFoundPlayer;
 
   [Header("State")] public float idleDuration = 2.0f;
   public float patrolRadius;
+  public float patrolSpeed;
+  public float chaseSpeed;
+  public float chaseDuration;
+
+  [Header("Attack")] public float attackCoolDown;
+  [HideInInspector] public bool isAttacking;
+  public bool canAttack;
+  [SerializeField] private float _attackTimer;
 
   [Header("FindPlayer")] public Vector2 viewRange;
   public Vector2 viewOffset;
@@ -25,6 +35,8 @@ public class EnemyController : CharacterController
   {
     base.Awake();
     _enemy = GetComponent<Enemy>();
+    damageZone = transform.Find("Damage Zone").gameObject;
+    player = FindObjectOfType<Player>();
 
     idleState = new IdleState();
     patrolState = new PatrolState();
@@ -42,6 +54,8 @@ public class EnemyController : CharacterController
     _currentState.OnUpdate();
 
     FindPlayer();
+
+    TimeCounter();
   }
 
   private void FixedUpdate()
@@ -55,6 +69,18 @@ public class EnemyController : CharacterController
 
     _currentState = newState;
     _currentState.OnEnter(this, _enemy);
+  }
+
+  private void TimeCounter()
+  {
+    if (!canAttack)
+    {
+      _attackTimer -= Time.deltaTime;
+      if (_attackTimer <= 0)
+      {
+        canAttack = true;
+      }
+    }
   }
 
   public void MoveTo(Vector2 destination)
@@ -82,7 +108,38 @@ public class EnemyController : CharacterController
     }
   }
 
-  private void FindPlayer()
+  public void MoveToOnce(Vector2 direction, float distance, float duration)
+  {
+    StartCoroutine(Slash(direction.normalized * distance, duration));
+  }
+
+  private IEnumerator Slash(Vector2 targetOffset, float time)
+  {
+    isAttacking = true;
+    Vector2 startPos = _rb.position;
+    Vector2 targetPos = startPos + targetOffset;
+    float elapsedTime = 0f;
+
+    while (elapsedTime < time)
+    {
+      elapsedTime += Time.deltaTime;
+      float t = elapsedTime / time; // 归一化时间
+      _rb.MovePosition(Vector2.Lerp(startPos, targetPos, t)); // 平滑移动
+      yield return new WaitForFixedUpdate(); // 等待下一帧的 FixedUpdate
+    }
+
+    isAttacking = false;
+
+    _attackTimer = attackCoolDown;
+    canAttack = false;
+
+    // 确保最终精确到目标点
+    _rb.MovePosition(targetPos);
+
+    damageZone.SetActive(false);
+  }
+
+  public bool FindPlayer()
   {
     faceDir = transform.localScale.x < 0 ? -1 : 1;
 
@@ -92,13 +149,10 @@ public class EnemyController : CharacterController
 
     if (hit != null && hit.CompareTag("Player"))
     {
-      isFoundPlayer = true;
-
-      if (_currentState != chaseState)
-      {
-        ChangeState(chaseState);
-      }
+      return true;
     }
+
+    return false;
   }
 
 

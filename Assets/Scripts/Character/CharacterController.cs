@@ -6,7 +6,7 @@ public abstract class CharacterController : MonoBehaviour
   protected Rigidbody2D _rb;
   protected Animator _anim;
   [Header("Move")] public float moveSpeed;
-  public bool canMove = true;
+  [HideInInspector] public bool canMove = true;
 
   protected virtual void Awake()
   {

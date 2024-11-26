@@ -7,7 +7,7 @@ public class IdleState : BaseState
   public override void OnEnter(EnemyController controller, Enemy enemy)
   {
     base.OnEnter(controller, enemy);
-    
+
     _idleTimer = 0;
   }
 
@@ -18,6 +18,11 @@ public class IdleState : BaseState
     if (_idleTimer >= enemyController.idleDuration)
     {
       enemyController.ChangeState(enemyController.patrolState);
+    }
+
+    if (enemyController.FindPlayer() || enemy.isHit)
+    {
+      enemyController.ChangeState(enemyController.chaseState);
     }
   }
 
